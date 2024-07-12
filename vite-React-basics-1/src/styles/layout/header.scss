@@ -1,0 +1,29 @@
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.navbar ul{
+    display: flex;
+    text-align: center;
+}
+
+.navbar ul li{
+    list-style: none;
+    margin-right: 15px;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.icons{
+    display: flex;
+}
+
+.icons a{
+    margin-right: 15px;
+
+}

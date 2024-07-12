@@ -1,33 +1,23 @@
-import { useState } from "react";
-import Greetings from "./components/Greetings";
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./styles/layout/hero.scss"
+import "./styles/layout/header.scss"
+
 import Name from "./components/Name";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
 import { Address } from "./components/Name";
 function App (){
-
-  const [name, setName] = useState("Ruja Subba");
-
-  const [greetings, setGreetings] = useState("Hi! good morning.");
-
-
-  return(
-    <div className="content">
-      <Name 
-         name={name}
-      />
-     
+return(
+  <React.Fragment>
+    <Routes>
+      {/* <Route path="/" element={<Name />} /> */}
+      <Route path="/Header" element={<Header />} />
+      <Route path="/Name" element={<Name />} />
+      <Route path="/Hero" element={<Hero />} />
       
-      <Greetings 
-         greet = {greetings}
-      />
-
-      <button onClick={() => setGreetings("BYE")}>Greetings</button>
-      <button onClick={()=> setName("Dipak Jabegu")}>NameChange</button>
-
-      <p><Address /></p>
-      <p>{greetings}</p>
-    </div>
-
-  
-  );
+    </Routes>
+  </React.Fragment>
+)
 }
 export default App;
