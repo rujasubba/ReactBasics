@@ -1,18 +1,14 @@
 import React from "react";
 
-function Name(props) {
-    console.log(props);
-    return <div>{props.name}</div>
+function Name() {
+    
+    return <div>Hi! My Name is Ruja.</div>
 }
 
 export function Address() {
     return(
         <div>
-            <ul>
-                <li>Country- Nepal</li>
-                <li>State- Provience1</li>
-                <li>Hometown- Jhapa</li>
-            </ul>
+            <p>My hometown is Jhapa.</p>
         </div>
     )
 }
