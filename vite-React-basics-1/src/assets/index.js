@@ -7,9 +7,12 @@ import Wishlist from "./icons/Wishlist.png";
 import Search from "./icons/Search.png";
 
 import HeroBg from './heroBg.png'
+import BedroomImg from './bedroomImg.png'
+import DiningImg from './diningImg.png'
+import LivingImg from './livingImg.png'
 
 const Images = {
-    HeroBg
+    HeroBg, BedroomImg, DiningImg, LivingImg
 }
 
 const Icons = {
