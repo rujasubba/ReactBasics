@@ -1,24 +1,45 @@
-import React, { useRef } from "react"
+import React, {useState } from "react"
+import * as Yup from "yup"
 import "../../styles/contact.scss"
 
 import { Icons } from "../../assets";
+import { useFormik } from "formik";
 
 function FormSection() {
-    const fullName =useRef(null)
-    const email =useRef(null)
-    const subject =useRef(null)
-    const message =useRef(null)
+/* ***Fully Controlled Form****
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] =useState('');
+    const [subject, setSubject] =useState('');
+    const [message, setMessage] =useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         const payload = {
-            fullName: fullName.current.value,
-            email: email.current.value,
-            message: message.current.value
+            fullName: fullName,
+            email: email,
+            subject: subject,
+            message: message
         };
         console.log("form", payload);
     
     };
+    */
+   const formik = useFormik({
+    enableReinitialize: true,
+    initialValues:{
+        fullName: '',
+        email: '',
+        subject:'',
+        message:''
+    },
+
+    validationSchema: Yup.object({
+        fullName: Yup.string(). required('This field is required')
+    }),
+    onSubmit: (values) => {
+        console.log(values);
+    }
+   })
     return(
         <React.Fragment>
             <div className="container">
@@ -49,18 +70,38 @@ function FormSection() {
             
                       <div className="form">
 
-                        <form onSubmit={handleSubmit} id="contactForm">
+                        <form id="contactForm" onSubmit={(e) =>{
+                            e.preventDefault();
+                            formik.submitForm();
+
+                        }}
+                        >
                               <label>Your name</label>
-                              <input ref={fullName} type="text" id="fullName" name="fullName" placeholder="Abc" required />
+                              <input type="text" id="fullName" name="fullName" placeholder="Abc"
+                                value={formik.values.fullName}
+                                onChange={formik.handleChange} 
+                             />
+                             {formik.touched.fullName && formik.errors.fullName ? (
+                                <span style={{
+                                    fontSize:'12px', color:'red', marginTop: '0'
+                                }}>{formik.errors.fullName}</span>
+                             ) :null}
+
 
                               <label>Email address</label>
-                              <input ref={email} type="email" id="email" name="email" placeholder="Abc@def.com" required />
+                              <input type="email" id="email" name="email" placeholder="Abc@def.com" 
+                                value={formik.values.email}
+                                onChange={formik.handleChange}/>
 
                               <label>Subject</label>
-                              <input ref={subject} type="text" id="subject" name="subject" placeholder="This is optional" />
+                              <input type="text" id="subject" name="subject" placeholder="This is optional" 
+                                value={formik.values.subject}
+                                onChange={formik.handleChange}/>
 
                               <label>Message</label>
-                              <textarea ref={message} id="message" name="message" placeholder="Hi! I'd like to ask about" required></textarea>
+                              <textarea id="message" name="message" placeholder="Hi! I'd like to ask about" 
+                                value={formik.values.message}
+                                onChange={formik.handleChange}></textarea>
 
                               <button type="submit">Submit</button>
 
