@@ -1,24 +1,39 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import "../../styles/contact.scss"
 
 import { Icons } from "../../assets";
 
 function FormSection() {
-    const fullName =useRef(null)
-    const email =useRef(null)
-    const subject =useRef(null)
-    const message =useRef(null)
+    // const fullName =useRef(null)
+    // const email =useRef(null)
+    // const subject =useRef(null)
+    // const message =useRef(null)
 
-    const handleSubmit = (e) => {
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+        // const payload = {
+        //     fullName: fullName.current.value,
+        //     email: email.current.value,
+        //     message: message.current.value
+        // };
+    //     console.log("form", payload);
+
+    const[fullName, setFullName] = useState("")
+    const [email, setEmail] = useState("")
+    const[subject, setSubject] = useState('')
+    const[message, setMessage] = useState("")
+
+    const handleSubmit = () =>{
         e.preventDefault();
         const payload = {
-            fullName: fullName.current.value,
-            email: email.current.value,
-            message: message.current.value
+            fullName: fullName,
+            email: email,
+            subject: subject,
+            message: message
         };
-        console.log("form", payload);
+
+    }
     
-    };
     return(
         <React.Fragment>
             <div className="container">
@@ -51,16 +66,32 @@ function FormSection() {
 
                         <form onSubmit={handleSubmit} id="contactForm">
                               <label>Your name</label>
-                              <input ref={fullName} type="text" id="fullName" name="fullName" placeholder="Abc" required />
+                              <input type="text" id="fullName" name="fullName" placeholder="Abc" 
+                                    value={fullName}
+                                    onChange={(event) => {
+                                        setFullName(event.target.value)
+                                    }}/>
 
                               <label>Email address</label>
-                              <input ref={email} type="email" id="email" name="email" placeholder="Abc@def.com" required />
+                              <input type="email" id="email" name="email" placeholder="Abc@def.com" 
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value)
+                                    }}/>
 
                               <label>Subject</label>
-                              <input ref={subject} type="text" id="subject" name="subject" placeholder="This is optional" />
+                              <input type="text" id="subject" name="subject" placeholder="This is optional" 
+                                value={subject}
+                                onChange={(event) => {
+                                    setSubject(event.target.value)
+                                }}/>
 
                               <label>Message</label>
-                              <textarea ref={message} id="message" name="message" placeholder="Hi! I'd like to ask about" required></textarea>
+                              <textarea id="message" name="message" placeholder="Hi! I'd like to ask about" 
+                               value={message}
+                               onChange={(event) => {
+                                setMessage(event.target.value)
+                                }}></textarea>
 
                               <button type="submit">Submit</button>
 
@@ -72,7 +103,7 @@ function FormSection() {
 
          </React.Fragment>
          
-    )
+    );
 }
 
 export default FormSection;
