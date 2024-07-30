@@ -31,7 +31,7 @@ function ShopFilter(){
 
             <div className="advanced-filter">
                  <label>Show</label>
-                 <input type="number" placeholder="1"/>
+                 <input id="show-number" type="number" placeholder="1"/>
                  <label>Sort By</label>
                  <input type="text" placeholder="Default"/>
             </div>

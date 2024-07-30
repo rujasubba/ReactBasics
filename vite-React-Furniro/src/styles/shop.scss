@@ -11,10 +11,12 @@
 h1{
     display: inline-block;
     padding: 2px 20px;
+    margin-right: 200px;
 }
 .breadcrumb {
     width:121px;
     margin-top: 1px;
+    margin-right: 200px;
     font-size: 16px;
     color: #000000;
 }
@@ -54,6 +56,10 @@ h1{
     width: 60px;
     height: 30px;
     margin-right: 40px;
-    border: none;
+    border: none; 
  }
+}
+
+ #show-number{
+     width:30px;
 }
