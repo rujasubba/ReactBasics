@@ -1,0 +1,59 @@
+.bg-container{
+    background-image: url(../assets/shopBg.png);
+    height: 316px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1{
+    display: inline-block;
+    padding: 2px 20px;
+}
+.breadcrumb {
+    width:121px;
+    margin-top: 1px;
+    font-size: 16px;
+    color: #000000;
+}
+.filterItems{
+    display: flex;
+    height: 70px;
+    background-color: #F9F1E7;
+    align-items: center;
+    justify-content: center;
+    
+    
+
+    .filter-icons{
+        margin-left: 30px;
+        margin-right: 70px;
+
+        span{
+            padding-right: 10px;
+        }
+        
+
+    }
+
+    .filter-results{
+        margin-right: 348px;
+    }
+}
+
+.advanced-filter{
+    margin-left: 30px;
+
+    label{
+        margin-right: 5px;
+    }
+
+     input{
+    width: 60px;
+    height: 30px;
+    margin-right: 40px;
+    border: none;
+ }
+}

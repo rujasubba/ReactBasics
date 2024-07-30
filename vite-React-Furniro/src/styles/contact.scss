@@ -10,6 +10,17 @@
     justify-content: center;
     margin-right: 191px;
     margin-left: 191px;
+
+    h1{
+        width: 375px;
+        margin: 20px 532px;
+    }
+
+    p{
+        color: #9F9F9F;
+        width: 644px;
+        margin: 4px 398px 20px 398px;
+    }
 }
 
 .info-lower{
@@ -17,31 +28,19 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    margin-right: 191px;
-    margin-left: 191px;
-    margin-top: 10px;
+    margin-right: 300px;
+    margin-left: 300px;
+    // margin-top: 10px;
+
+    .info-items{
+        margin-top: 0;
+    }
 }
 
-.info {
-    padding: 20px;
-    background-color: #fff6e5;
-    border-right: 1px solid #ddd;
-    max-width: 300px;
-}
-
-.info h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.info p {
-    font-size: 14px;
-    margin-bottom: 20px;
-    color: #666;
-}
 
 .info-item {
     margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .info-item span{
@@ -50,14 +49,14 @@
 
 .info-item h2 {
     font-size: 18px;
-    margin: 10px 0;
+    margin-left: 40px;
     
 }
 
 .info-item p {
     font-size: 14px;
     color: #666;
-    margin: 10px 25px;
+    margin-left: 40px;
     
 }
 
@@ -81,6 +80,7 @@ form label {
 form input{
     width:528px;
     height: 35px;
+    color: #9F9F9F;
 }
 
 form input, form textarea {

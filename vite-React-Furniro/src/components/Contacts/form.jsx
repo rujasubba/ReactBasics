@@ -83,7 +83,7 @@ function FormSection() {
                              />
                              {formik.touched.fullName && formik.errors.fullName ? (
                                 <span style={{
-                                    fontSize:'12px', color:'red', marginTop: '0'
+                                    fontSize:'12px', color:'red'
                                 }}>{formik.errors.fullName}</span>
                              ) :null}
 
