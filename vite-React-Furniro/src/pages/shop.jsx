@@ -1,8 +1,8 @@
 import React from 'react';
-import Products from '../Product';
-import ShopFilter from './shopFilter';
+import Products from '../components/Product/index';
+import ShopFilter from '../components/Shop/shopFilter';
 
-import "../../styles/shop.scss"
+import "../styles/shop.scss"
 
 function Shop(){
     return(
