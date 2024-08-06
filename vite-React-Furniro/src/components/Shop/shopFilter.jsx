@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Icons } from "../../assets";
 import { Images } from "../../assets";
 
 import "../../styles/shop.scss"
+import {useSelector} from "react-redux";
 
 
-function ShopFilter(){
+function ShopFilter(props) {
+     const {setLimit, limit} = props;
+     const {products} = useSelector((state) => {
+          return{
+               products: state.product.payload,
+          };
+      });
+
+      const number = useMemo(() => {
+          return products.length;
+      }, [products]);
+
+      const handleLimitChange = (e) => {
+          setLimit(e.target.value);
+      };
+
     return(
         <React.Fragment>
           
@@ -26,12 +42,14 @@ function ShopFilter(){
 
             </div>
             <div className="filter-results">
-                  <span>showing 1-16 of 32 results</span>
+                  <span>showing 1-{number} of 32 results</span>
             </div>
 
             <div className="advanced-filter">
                  <label>Show</label>
-                 <input id="show-number" type="number" placeholder="1"/>
+                 <input id="show-number" type="number" placeholder="1"
+                   value={limit}
+                    onChange={handleLimitChange}/>
                  <label>Sort By</label>
                  <input type="text" placeholder="Default"/>
             </div>
