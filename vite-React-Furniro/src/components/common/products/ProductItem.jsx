@@ -5,30 +5,19 @@ import {AppContext} from "../../../context";
 
 
 function ProductItem({id, imgUrl, title, category, price}){
-    // const {setDataToCart} = useContext(AppContext);
-
-    // const addToCart = () => {
-    //  const payload = {
-    //   id,
-    //   imgUrl,
-    //   title,
-    //   price,
-    //  };
-
-    //  setDataToCart(payload);
-
-
-    const { setDataToCart } = useContext(AppContext);
+    const {setDataToCart} = useContext(AppContext);
 
     const addToCart = () => {
-      const payload = {
-        id,
-        imgUrl,
-        title,
-        price,
-      };
-  
-      setDataToCart(payload);
+     const payload = {
+      id,
+      imgUrl,
+      title,
+      price,
+     };
+
+     setDataToCart(payload);
+
+
   };
     return(
         <React.Fragment>

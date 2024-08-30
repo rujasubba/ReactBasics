@@ -5,19 +5,41 @@ export const AppContext = createContext("");
 
 const AppContextProvider = (props) => {
   const [cartData, setCartData] = useState([]);
+  const [total, setTotal] = useState({
+    subTotal: 0,
+    total: 0, 
+  });
   
 
   const state = {
     cartData,
+    total
   };
 
   const setDataToCart = (value) => {
+    const productItem = cartData?.findIndex((item) => item?.id === value?.id);
     
-    setCartData((prevState) => [...prevState, value]);
-    console.log(cartData);
-    };
-   
-
+    if (productItem > -1) {
+      const updatePayload = {
+        ...cartData[productItem],
+        quantity: cartData[productItem]?.quantity + 1,
+        subTotal: cartData[productItem]?.subTotal + value?.price,
+      };
+      cartData?.splice(productItem, 1, updatePayload);
+    } else {
+      const payload = {
+        ...value,
+        quantity: 1,
+        subTotal: value?.price,
+      };
+      setCartData((prevState) => [...prevState, payload]);
+    }
+    setTotal((prevState) => ({
+      subTotal: prevState?.subTotal + value?.price,
+      total: prevState?.total + value?.price,
+    }));
+  };
+    
   return (
     <AppContext.Provider 
       value={{
@@ -31,5 +53,3 @@ const AppContextProvider = (props) => {
 };
 
 export default AppContextProvider;
-
-

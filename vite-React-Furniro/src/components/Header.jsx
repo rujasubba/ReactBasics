@@ -26,18 +26,15 @@ function Header() {
           </ul>
         </div>
         <div className="icons">
-          <a href="#">
+          
             <img src={Icons.Profile} alt="profile" />
-          </a>
-          <a href="#">
             <img src={Icons.Search} alt="search" />
-          </a>
-          <a href="#">
             <img src={Icons.Wishlist} alt="wishlist" />
-          </a>
-          <a href="#">
-            <img src={Icons.Cart} alt="cart" /> {cartData?.length}
-          </a>
+            <Link to={"/cart"} className="cart-link">
+            <img src={Icons.Cart} alt="cart" /> <span>{cartData?.length}</span>
+            </Link>
+            
+          
         </div>
       </div>
     </div>
