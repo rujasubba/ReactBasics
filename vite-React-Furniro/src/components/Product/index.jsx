@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { AppContext } from '../../context';
+
 
 import "../../styles/layout/product.scss"
-import ProductItem from './ProductItem'
+import ProductItem from '../common/products/ProductItem'
 
 function Products() {
 
@@ -25,11 +27,12 @@ function Products() {
     
     return(
         <div className='container'>
-            <h1>Our Products</h1>
+            
             <div className='category-products'>
-            {products?.map((item) => (
+             {products?.map((item) => (
                 <ProductItem
                  key={item?.id}
+                 id={item?.id}
                  title={item?.title}
                  imgUrl={item?.image}
                  category={item?.category}
@@ -45,4 +48,6 @@ function Products() {
         
     )
 }
-export default Products
+export default Products;
+
+
