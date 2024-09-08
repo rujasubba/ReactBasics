@@ -87,6 +87,55 @@
             font-size: 20px;
             border-radius: 15px;
             margin-bottom: 65px;
+            cursor: pointer;
         }
     }
+}
+
+.payment-form{
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f5f2ee;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+  input{
+    padding: 10px;
+    height: 30px;
+    width: 730px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+.card-element {
+    padding: 10px;
+    height: 30px;
+    width: 730px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 50px;
+  }
+
+
+.pay-button {
+  width: 50%;
+  margin-left: 170px;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #B88E2F;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }

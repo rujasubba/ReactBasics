@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Icons } from "../../../assets";
 import {AppContext} from "../../../context";
+import { showToastMessage } from "../../ui/ToastMessage";
 
 
 
 function ProductItem({id, imgUrl, title, category, price}){
     const {setDataToCart} = useContext(AppContext);
+
 
     const addToCart = () => {
      const payload = {
@@ -16,7 +18,9 @@ function ProductItem({id, imgUrl, title, category, price}){
      };
 
      setDataToCart(payload);
-
+     showToastMessage({message:'Product has been added to the cart',
+        type:'success'
+     });
 
   };
     return(

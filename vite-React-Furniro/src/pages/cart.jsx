@@ -1,18 +1,118 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "../styles/cart.scss";
 
 import { AppContext } from "../context";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { Container } from "@mui/material";
+import axios from "axios";
+
 
 
 function Cart() {
   const { cartData, total } = useContext(AppContext);
 
+  const stripe = useStripe();
+  const elements = useElements();
+
+
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [clientSecret, setClientSecret] = useState(null);
+
+
+
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
+
+  const handleCheckoutClick = () =>{
+    setShowPaymentForm(true);
+  };
+
+
+ 
+
+  const handleFormSubmit = async(event) =>{
+    event.preventDefault();
+    setProcessing(true);
+
+
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        console.log("paymentIntent", paymentIntent);
+
+        //perform database operations here
+
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+        showToastMessage({
+          message: "Your payment has been successfully received.",
+          type: "success",
+          position: "bottom-right",
+        });
+      })
+      .catch((e) => {
+        setSucceeded(false);
+        setError(e);
+        setProcessing(false);
+      });
+  };
+
+
+
+
+  const handleChange = (event) =>{
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
+    console.log(event);
+  };
+
+  useEffect(() => {
+
+    const getClientSecret = async () => {
+      const amount = parseFloat(total?.total * 100).toFixed(2);
+      const response = await axios({
+        method: "POST",
+        url: `/payments/create?total=${amount}`,
+      });
+      setClientSecret(response.data.clientSecret);
+    };
+
+    if (total?.total > 0) {
+      getClientSecret();
+    }
+  }, [total]);
+
+    // const getClientSecret = async () => {
+    //   try {
+    //     const response = await axios.post(`/payments/create?total=${total?.total * 100}`,
+    //     );
+    //     console.log("Client Secret Response:", response.data);
+    //     setClientSecret(response.data.clientSecret);
+    //   } catch (error) {
+    //     console.error("Error fetching client secret:", error);
+    //   }
+    // };
+
+
+
+    
+
+  console.log("Total amount", total?.total);
+
+  console.log("client Secret", clientSecret);
+
   return (
     <React.Fragment>
-      
-      
-        <section className="cart-table-section">
+      <Container>
+      <section className="cart-table-section">
           <table>
             <thead>
               <th></th>
@@ -46,13 +146,27 @@ function Cart() {
               <label>Total</label>
               <p className="total">{total?.total}</p>
             </div>
-            <button>Checkout</button>
+            {!showPaymentForm && (
+              <button onClick={handleCheckoutClick}>Checkout</button>
+            )}
+
           </div>
         </section>
-      
-      {/* Services band */}
 
-      {/* */}
+
+        {showPaymentForm && (
+          <form onSubmit={handleFormSubmit} className="payment-form">
+            <h3>Payment</h3>
+            <label>Full name(as displayed on card) </label>
+               <input type="text" placeholder="John Deo"/>
+            <CardElement onChange={handleChange}  className="card-element"/>
+            <button type="submit" className="pay-button">Pay Now</button>
+          </form>
+        )}
+
+
+      </Container>
+      
     </React.Fragment>
   );
 }

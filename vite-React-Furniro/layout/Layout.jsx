@@ -3,6 +3,10 @@ import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import AppContextProvider from "../src/context";
 
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Layout( {children}){
     return(
         
@@ -13,6 +17,7 @@ function Layout( {children}){
             {children}
             
             <Footer />
+            <ToastContainer />
         </AppContextProvider>
     )
 }

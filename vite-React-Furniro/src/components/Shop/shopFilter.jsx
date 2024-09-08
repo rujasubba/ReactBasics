@@ -33,7 +33,7 @@ function ShopFilter(props) {
 
             </div>
             
-         <div class="filterItems">
+         <div className="filterItems">
             <div className="filter-icons">
                  <span><img src={Icons.Filtering} alt="Grid"/></span>
                  <span>Filter</span>
