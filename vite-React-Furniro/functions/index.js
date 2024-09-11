@@ -7,14 +7,14 @@ const stripe = require("stripe")(
 
 const app = express();
 
-app.use(cors({origin:true}))
-    // origin: ['http://localhost:5173', 'https://fakestoreapi.com/products'], 
-    // methods: ['GET', 'POST'] }))
+app.use(cors({
+    origin: ['http://localhost:5173'], 
+    methods: ['GET', 'POST'] }))
 app.use(express.json());
 
-app.get('/', (req, res) => res.status(200).send('Hello'))
+app.get('/', (req, res) => res.status(200).send('Hello'));
 
-app.post('/payments/create', async(req, res) =>{
+app.post('/payments/create', async(req, res) => {
     const total = req.query.total;
 
     console.log('Payment request received for amount', total);
@@ -22,13 +22,13 @@ app.post('/payments/create', async(req, res) =>{
     const paymentIntent = await stripe.paymentIntents.create({
         amount: total,
         currency: 'aud'
-    })
+    });
 
     res.status(201).send({
         clientSecret: paymentIntent.client_secret
-    })
-})
+    });
+});
 
-exports.api = functions.https.onRequest(app)
+exports.api = functions.https.onRequest(app);
 
 // http://127.0.0.1:5001/furniro-furniture/us-central1/api/
