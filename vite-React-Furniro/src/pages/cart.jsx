@@ -5,7 +5,7 @@ import "../styles/cart.scss";
 import { AppContext } from "../context";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Container } from "@mui/material";
-import axios from "axios";
+import axios from "../axios";
 
 
 
@@ -78,10 +78,7 @@ function Cart() {
 
     const getClientSecret = async () => {
       const amount = parseFloat(total?.total * 100).toFixed(2);
-      const response = await axios({
-        method: "POST",
-        url: `/payments/create?total=${amount}`,
-      });
+      const response = await axios.post(`/payments/create?total=${amount}`);
       setClientSecret(response.data.clientSecret);
     };
 
